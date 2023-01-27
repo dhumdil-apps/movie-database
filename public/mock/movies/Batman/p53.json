@@ -1,0 +1,27 @@
+{
+  "Search": [
+    {
+      "Title": "Goldentusk's Batman Theme Song",
+      "Year": "2007",
+      "imdbID": "tt1813157",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BZDQ1MDBmZWUtMzExYy00MDFkLTk4MjMtMTQxZjgxZDc0N2Q1XkEyXkFqcGdeQXVyMzEzMzc3NA@@._V1_SX300.jpg"
+    },
+    {
+      "Title": "Batman of Suburbia",
+      "Year": "2010",
+      "imdbID": "tt1842319",
+      "Type": "movie",
+      "Poster": "N/A"
+    },
+    {
+      "Title": "El día que conocí a Batman",
+      "Year": "2009",
+      "imdbID": "tt1635444",
+      "Type": "movie",
+      "Poster": "N/A"
+    }
+  ],
+  "totalResults": "523",
+  "Response": "True"
+}

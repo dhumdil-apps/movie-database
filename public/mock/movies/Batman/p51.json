@@ -1,0 +1,76 @@
+{
+  "Search": [
+    {
+      "Title": "Batman: Retribution",
+      "Year": "2014",
+      "imdbID": "tt4531936",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMzY0NWMxOGQtZjRjYy00NDUyLTk4NWYtNTQ1MjA1NDY1YTc4XkEyXkFqcGdeQXVyMzUwMDIzMDQ@._V1_SX300.jpg"
+    },
+    {
+      "Title": "Holy Board Meeting Batman!",
+      "Year": "2014",
+      "imdbID": "tt4614012",
+      "Type": "movie",
+      "Poster": "N/A"
+    },
+    {
+      "Title": "Batman Reboots",
+      "Year": "2010",
+      "imdbID": "tt4653674",
+      "Type": "movie",
+      "Poster": "N/A"
+    },
+    {
+      "Title": "Batman: Arkham City Lockdown",
+      "Year": "2011",
+      "imdbID": "tt4671780",
+      "Type": "game",
+      "Poster": "N/A"
+    },
+    {
+      "Title": "Batman: Hidden Affairs",
+      "Year": "2015",
+      "imdbID": "tt4338228",
+      "Type": "movie",
+      "Poster": "N/A"
+    },
+    {
+      "Title": "Batman: Mini-Figure",
+      "Year": "2014",
+      "imdbID": "tt3508120",
+      "Type": "movie",
+      "Poster": "N/A"
+    },
+    {
+      "Title": "An Interview with Batman",
+      "Year": "2014",
+      "imdbID": "tt3521274",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BZmQ2ODViMWItYWQyMS00N2MwLTg5NWEtYzgyOThjMTg5MjVhXkEyXkFqcGdeQXVyNzU4MjAyMTY@._V1_SX300.jpg"
+    },
+    {
+      "Title": "Iron Man vs Batman",
+      "Year": "2010",
+      "imdbID": "tt3426078",
+      "Type": "movie",
+      "Poster": "N/A"
+    },
+    {
+      "Title": "The Batman Auditions",
+      "Year": "2014",
+      "imdbID": "tt3428056",
+      "Type": "movie",
+      "Poster": "N/A"
+    },
+    {
+      "Title": "Chicano Batman en el Retrovisor",
+      "Year": "2013",
+      "imdbID": "tt3377958",
+      "Type": "movie",
+      "Poster": "N/A"
+    }
+  ],
+  "totalResults": "523",
+  "Response": "True"
+}

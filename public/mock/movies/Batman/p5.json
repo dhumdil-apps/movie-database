@@ -1,0 +1,76 @@
+{
+  "Search": [
+    {
+      "Title": "Batman: Mystery of the Batwoman",
+      "Year": "2003",
+      "imdbID": "tt0346578",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BN2IwYTVlZGQtOTRhNy00MDI5LThmMTUtYWI1MGUwMGFkYzI1XkEyXkFqcGdeQXVyNzQzNzQxNzI@._V1_SX300.jpg"
+    },
+    {
+      "Title": "The Batman Superman Movie: World's Finest",
+      "Year": "1997",
+      "imdbID": "tt0169590",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BZTQ3YWJhODMtYTdmNC00MmZiLThhOWYtM2UxZDBjNjRlY2EwXkEyXkFqcGdeQXVyMjI4OTg3MTc@._V1_SX300.jpg"
+    },
+    {
+      "Title": "Batman: The Brave and the Bold",
+      "Year": "2008–2011",
+      "imdbID": "tt1213218",
+      "Type": "series",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BYzAyMzZjMDMtYTYyZS00NGJlLWI2ZmQtZTQ3ZGJmNjYwZWFiXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg"
+    },
+    {
+      "Title": "Batman vs Teenage Mutant Ninja Turtles",
+      "Year": "2019",
+      "imdbID": "tt9775360",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BNzk3MGZlYWQtNDU4Ny00Y2I5LTk2YmItM2QxYjFiMjM0ZmQxXkEyXkFqcGdeQXVyNDUzMTkzMDI@._V1_SX300.jpg"
+    },
+    {
+      "Title": "The Batman vs. Dracula",
+      "Year": "2005",
+      "imdbID": "tt0472219",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMTkyMTMwNjA3MV5BMl5BanBnXkFtZTcwNzE2NTI2OQ@@._V1_SX300.jpg"
+    },
+    {
+      "Title": "Batman: Arkham Knight",
+      "Year": "2015",
+      "imdbID": "tt3554580",
+      "Type": "game",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMTc0MTcxMzQ0Ml5BMl5BanBnXkFtZTgwNDc3MzE0MTE@._V1_SX300.jpg"
+    },
+    {
+      "Title": "Batman: Soul of the Dragon",
+      "Year": "2021",
+      "imdbID": "tt12885852",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BYmQ4YjZlZjAtYzljOS00ZjViLWE1NGYtMzlmZDZjZTcxYzRiXkEyXkFqcGdeQXVyMTEyNzgwMDUw._V1_SX300.jpg"
+    },
+    {
+      "Title": "Batman Beyond: The Movie",
+      "Year": "1999",
+      "imdbID": "tt0231237",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BZjdjN2VjMDQtZjc2Ni00ZTIxLWIzYjktOTE0MTY3ZTFiNGZiXkEyXkFqcGdeQXVyMjI4OTg3MTc@._V1_SX300.jpg"
+    },
+    {
+      "Title": "Batman: Dead End",
+      "Year": "2003",
+      "imdbID": "tt0374526",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMTkzMDI0MTIyNF5BMl5BanBnXkFtZTYwMTUxMTY3._V1_SX300.jpg"
+    },
+    {
+      "Title": "Batman: Return of the Caped Crusaders",
+      "Year": "2016",
+      "imdbID": "tt5973626",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BOTdlNjNhOGEtZTk2Yy00MjI5LTllOTMtODczMWFmNmNhZmVlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg"
+    }
+  ],
+  "totalResults": "523",
+  "Response": "True"
+}
