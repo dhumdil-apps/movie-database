@@ -9,18 +9,18 @@
     "url": "https://github.com/dhumdil-apps/movie-database.git"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=18.13.0"
   },
-  "packageManager": "pnpm@7.25.0",
+  "packageManager": "pnpm@7.26.1",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
     "lint": "npx eslint src",
     "lint:fix": "npm run lint -- --fix",
     "prettier": "npx prettier src --check",
     "prettier:fix": "npm run prettier -- --write",
-    "format": "npm run prettier:fix && npm run lint:fix"
+    "format": "npm run prettier:fix && npm run lint:fix",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
