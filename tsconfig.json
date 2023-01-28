@@ -30,12 +30,9 @@
     "baseUrl": "./",
     "paths": {
       "$api/*": ["src/api/*"],
-      "$assets/*": ["src/assets/*"],
       "$components/*": ["src/components/*"],
       "$constants/*": ["src/constants/*"],
-      "$pages/*": ["src/pages/*"],
-      "$store/*": ["src/store/*"],
-      "$templates/*": ["src/templates/*"],
+      "$state/*": ["src/components/state/*"],
       "$utils/*": ["src/utils/*"]
     }
   },
