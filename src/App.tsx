@@ -1,71 +1,47 @@
-import { lazy, Suspense } from 'react';
-import { Routes, Route, Outlet } from 'react-router-dom';
-import NotFound from '$pages/NotFound';
-import SkeletonPage from '$pages/SkeletonPage';
-import Navigation from '$templates/Navigation';
-import ROUTES from '$constants/routes';
+import {
+  ColorSchemeProvider,
+  MantineProvider,
+  AppShell,
+  MantineTheme,
+} from '@mantine/core';
+import { FooterSimple } from '$components/FooterSimple';
+import { HeaderSimple } from '$components/HeaderSimple';
+import { useUIStore } from '$store/ui';
+import { Router } from './Router';
 
-const Home = lazy(() => import('$pages/Home'));
-const Details = lazy(() => import('$pages/Details'));
-const Favorites = lazy(() => import('$pages/Favorites'));
+const useAppShellStyle = (theme: MantineTheme) => ({
+  main: {
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.colors.dark[8]
+        : theme.colors.gray[0],
+  },
+});
 
 function App() {
+  const colorScheme = useUIStore((state) => state.colorScheme);
+  const toggleColorScheme = useUIStore((state) => state.toggleColorScheme);
+
   return (
-    <Routes>
-      <Route
-        path='/'
-        element={
-          <>
-            <Navigation />
-            <Outlet />
-          </>
-        }
+    <ColorSchemeProvider
+      colorScheme={colorScheme}
+      toggleColorScheme={toggleColorScheme}
+    >
+      <MantineProvider
+        theme={{ colorScheme }}
+        withGlobalStyles
+        withNormalizeCSS
       >
-        <Route
-          index
-          loader={({ params }) => {
-            console.log(params.imdbID);
-          }}
-          action={({ params }) => {
-            console.log({ params });
-          }}
-          element={
-            <Suspense fallback={<SkeletonPage />}>
-              <Home />
-            </Suspense>
-          }
-        />
-        <Route
-          path={`${ROUTES.MOVIE_DETAILS.base}/:${ROUTES.MOVIE_DETAILS.param}`}
-          loader={({ params }) => {
-            console.log(params.imdbID);
-          }}
-          action={({ params }) => {
-            console.log({ params });
-          }}
-          element={
-            <Suspense fallback={<SkeletonPage />}>
-              <Details />
-            </Suspense>
-          }
-        />
-        <Route
-          path={ROUTES.FAVORITES}
-          loader={({ params }) => {
-            console.log(params.imdbID);
-          }}
-          action={({ params }) => {
-            console.log({ params });
-          }}
-          element={
-            <Suspense fallback={<SkeletonPage />}>
-              <Favorites />
-            </Suspense>
-          }
-        />
-        <Route path='*' element={<NotFound />} />
-      </Route>
-    </Routes>
+        <AppShell
+          padding='md'
+          header={<HeaderSimple />}
+          footer={<FooterSimple />}
+          styles={useAppShellStyle}
+        >
+          <Router />
+        </AppShell>
+      </MantineProvider>
+    </ColorSchemeProvider>
   );
 }
 

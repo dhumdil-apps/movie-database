@@ -1,23 +1,14 @@
-import { useQuery } from '@tanstack/react-query';
+import { useEffect } from 'react';
+import { ROUTES } from '$constants/routes';
+import { useRouterStore } from '$store/router';
 
 function Favorites() {
-  const { isLoading, error, data, isFetching } = useQuery({
-    queryKey: ['getJson'],
-    queryFn: () =>
-      fetch('https://reqbin.com/echo/get/json', {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-        },
-      })
-        .then((res) => res.json())
-        .then((res) => res.data),
-  });
+  const setActiveRoute = useRouterStore((state) => state.setActiveRoute);
 
-  console.log({ isFetching });
-  console.log({ isLoading });
-  console.log({ error });
-  console.log({ data });
+  useEffect(() => {
+    setActiveRoute(ROUTES.FAVORITES);
+    throw new Error();
+  }, []);
 
   return <h1>Favorites</h1>;
 }

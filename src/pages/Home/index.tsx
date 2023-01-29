@@ -1,40 +1,73 @@
-import { ErrorBoundary } from 'react-error-boundary';
+import { useState, useEffect } from 'react';
+import { ROUTES } from '$constants/routes';
+import {
+  Grid,
+  Skeleton,
+  Container,
+  Button,
+  Center,
+  TextInput,
+} from '@mantine/core';
+import { useRouterStore } from '$store/router';
+import { useDebouncedState } from '@mantine/hooks';
+import { IconCircledX } from '$icons/CircledX';
+import { IconSearch } from '$icons/Search';
 
-function ErrorFallback({ error, resetErrorBoundary }: any) {
-  return (
-    <div role='alert'>
-      <p>Something went wrong:</p>
-      <pre>{error.message}</pre>
-      <button onClick={resetErrorBoundary}>Try again</button>
-    </div>
-  );
-}
+const child = <Skeleton height={250} radius='md' animate={false} />;
 
-const myErrorHandler = (error: Error, info: { componentStack: string }) => {
-  // Do something with the error
-  // E.g. log to an error logging client here
-};
-
-/**
- * Page should contain search input field with search button on the top of the page.
- * When user submits the search, all search results should be displayed under the search input field.
- * Please consider paging or endless scrolling of search results.After redirect to another page and go back,
- * the last searching and results should be still visible with the last visible table page or scroll position.
- */
 function Home() {
+  const [value, setValue] = useDebouncedState('', 200);
+  const setActiveRoute = useRouterStore((state) => state.setActiveRoute);
+
+  useEffect(() => {
+    setActiveRoute(ROUTES.HOME);
+  }, []);
+
   return (
-    <ErrorBoundary
-      // This is a component you want rendered in the event of an error. As props it will be passed the error and resetErrorBoundary (which will reset the error boundary's state when called, useful for a "try again" button when used in combination with the onReset prop).
-      FallbackComponent={ErrorFallback}
-      // This will be called immediately before the ErrorBoundary resets it's internal state (which will result in rendering the children again). You should use this to ensure that re-rendering the children will not result in a repeat of the same error happening again.
-      onReset={() => {
-        // reset the state of your app so the error doesn't happen again
-      }}
-      // This will be called when there's been an error that the ErrorBoundary has handled. It will be called with two arguments: error, info.
-      onError={myErrorHandler}
-    >
-      <h1>Search Results Page</h1>
-    </ErrorBoundary>
+    <Container my='lg'>
+      <Grid grow gutter='lg'>
+        <Grid.Col span={12} py='lg'>
+          <TextInput
+            icon={<IconSearch size='18' />}
+            defaultValue={value}
+            placeholder='Search OMDb'
+            size='xl'
+            onChange={(event: any) => setValue(event.currentTarget.value)}
+          />
+        </Grid.Col>
+
+        <Grid.Col xs={4}>{child}</Grid.Col>
+        <Grid.Col xs={8}>{child}</Grid.Col>
+        <Grid.Col xs={8}>{child}</Grid.Col>
+        <Grid.Col xs={4}>{child}</Grid.Col>
+        <Grid.Col xs={3}>{child}</Grid.Col>
+        <Grid.Col xs={3}>{child}</Grid.Col>
+        <Grid.Col xs={6}>{child}</Grid.Col>
+        <Grid.Col xs={8}>{child}</Grid.Col>
+        <Grid.Col xs={4}>{child}</Grid.Col>
+        <Grid.Col xs={4}>{child}</Grid.Col>
+        <Grid.Col xs={8}>{child}</Grid.Col>
+        <Grid.Col xs={3}>{child}</Grid.Col>
+        <Grid.Col xs={3}>{child}</Grid.Col>
+        <Grid.Col xs={6}>{child}</Grid.Col>
+        <Grid.Col xs={8}>{child}</Grid.Col>
+        <Grid.Col xs={4}>{child}</Grid.Col>
+
+        <Grid.Col span={12} py='lg'>
+          <Center>
+            <Button
+              size='lg'
+              fullWidth
+              leftIcon={<IconCircledX size='18' />}
+              variant='gradient'
+              loading
+            >
+              Load more
+            </Button>
+          </Center>
+        </Grid.Col>
+      </Grid>
+    </Container>
   );
 }
 

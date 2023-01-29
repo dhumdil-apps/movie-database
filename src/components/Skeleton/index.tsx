@@ -1,6 +1,6 @@
 import { Skeleton } from '@mantine/core';
 
-function SkeletonPage() {
+export function SkeletonPage() {
   return (
     <>
       <Skeleton height={50} circle mb='xl' />
@@ -10,5 +10,3 @@ function SkeletonPage() {
     </>
   );
 }
-
-export default SkeletonPage;

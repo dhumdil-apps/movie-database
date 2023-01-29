@@ -24,7 +24,6 @@
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "useDefineForClassFields": true,
-    "allowJs": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
     "baseUrl": "./",
@@ -32,7 +31,9 @@
       "$api/*": ["src/api/*"],
       "$components/*": ["src/components/*"],
       "$constants/*": ["src/constants/*"],
-      "$state/*": ["src/components/state/*"],
+      "$icons/*": ["src/icons/*"],
+      "$pages/*": ["src/pages/*"],
+      "$store/*": ["src/store/*"],
       "$utils/*": ["src/utils/*"]
     }
   },

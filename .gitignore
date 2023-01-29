@@ -20,7 +20,6 @@ dist/
 generated/
 
 # ENV FILES
-.env
 *.local
 
 # LOGS
@@ -48,5 +47,6 @@ Thumbs.db
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
 
 .vercel
