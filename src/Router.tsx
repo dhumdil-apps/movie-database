@@ -31,7 +31,7 @@ export function Router() {
       <Routes>
         <Route
           index
-          path='/'
+          path={ROUTES.HOME}
           element={
             <Suspense fallback={<>...</>}>
               <HomePage />
