@@ -9,7 +9,6 @@ import { AppFooter } from '$components/AppFooter';
 
 import { useUIStore } from '$store/ui';
 import { Router } from './Router';
-import { COLOR_SCHEME } from '$constants/colorScheme';
 
 const useAppShellStyle = (theme: MantineTheme) => ({
   main: {
