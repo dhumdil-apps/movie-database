@@ -8,9 +8,6 @@
     "type": "git",
     "url": "https://github.com/dhumdil-apps/movie-database.git"
   },
-  "engines": {
-    "node": ">=18.13.0"
-  },
   "packageManager": "pnpm@7.26.1",
   "scripts": {
     "dev": "vite",
