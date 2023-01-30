@@ -119,7 +119,9 @@ function Details() {
       <Container>
         <div className={classes.inner}>
           <div className={classes.content}>
-            <Text className={classes.year}>{movieDetails.Year}</Text>
+            <Text className={classes.year} hidden={!movieDetails.Year}>
+              {movieDetails.Year}
+            </Text>
             <Flex
               gap='xl'
               justify='flex-start'
@@ -127,7 +129,9 @@ function Details() {
               direction='row'
               wrap='wrap'
             >
-              <Title className={classes.title}>{movieDetails.Title}</Title>
+              <Title className={classes.title} hidden={!movieDetails.Title}>
+                {movieDetails.Title}
+              </Title>
               <ActionIcon
                 aria-label='Add to favorites'
                 size='xl'
@@ -138,7 +142,11 @@ function Details() {
               </ActionIcon>
             </Flex>
 
-            <Text color='dimmed' mt='md'>
+            <Text
+              color='dimmed'
+              mt='md'
+              hidden={!movieDetails.Plot || movieDetails.Plot === 'N/A'}
+            >
               {movieDetails.Plot}
             </Text>
 
@@ -188,16 +196,38 @@ function Details() {
             />
 
             <Group mt={30}>
-              <Badge variant='dot' size='lg' aria-label='Type'>
+              <Badge
+                variant='dot'
+                size='lg'
+                aria-label='Type'
+                hidden={!movieDetails.Type || movieDetails.Type === 'N/A'}
+              >
                 {movieDetails.Type}
               </Badge>
-              <Badge variant='dot' size='lg' aria-label='Awards'>
+              <Badge
+                variant='dot'
+                size='lg'
+                aria-label='Awards'
+                hidden={!movieDetails.Rated || movieDetails.Rated === 'N/A'}
+              >
                 {movieDetails.Rated}
               </Badge>
-              <Badge variant='dot' size='lg' aria-label='Released'>
+              <Badge
+                variant='dot'
+                size='lg'
+                aria-label='Released'
+                hidden={
+                  !movieDetails.Released || movieDetails.Released === 'N/A'
+                }
+              >
                 {movieDetails.Released}
               </Badge>
-              <Badge variant='dot' size='lg' aria-label='Runtime'>
+              <Badge
+                variant='dot'
+                size='lg'
+                aria-label='Runtime'
+                hidden={!movieDetails.Runtime || movieDetails.Runtime === 'N/A'}
+              >
                 {movieDetails.Runtime}
               </Badge>
             </Group>
@@ -211,6 +241,7 @@ function Details() {
           >
             <Paper shadow='xl' radius='xs' p='xl'>
               <Image
+                withPlaceholder
                 src={movieDetails.Poster}
                 className={classes.image}
                 alt={movieDetails.Title}

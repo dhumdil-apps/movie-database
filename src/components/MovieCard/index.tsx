@@ -68,12 +68,13 @@ export function MovieCard({
       p='xl'
       className={classes.card}
       sx={{
+        backgroundColor: 'white',
         backgroundImage: `url(${Poster})`,
       }}
     >
       <Stack justify='space-between' className={classes.cardDetails}>
         <Stack align='flex-start' justify='flex-start'>
-          <Badge radius='xs' className={classes.type} mt={5}>
+          <Badge radius='xs' className={classes.type} mt={5} hidden={!Type}>
             {Type}
           </Badge>
           <Text
@@ -82,6 +83,7 @@ export function MovieCard({
             size='xs'
             weight={700}
             mt='md'
+            hidden={!Year}
           >
             {Year}
           </Text>
