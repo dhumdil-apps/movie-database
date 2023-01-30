@@ -35,7 +35,7 @@ export const fetchMovies = async ({
   }
 
   const response = await fetch(
-    `http://www.omdbapi.com/?apiKey=${
+    `https://www.omdbapi.com/?apiKey=${
       import.meta.env.VITE_OMDB_API_KEY
     }&s=${searchValue}&page=${page}`,
   )

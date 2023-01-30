@@ -52,7 +52,7 @@ const fetchMovieDetails = async (imdbID: State): Promise<Response> => {
   }
 
   const response = await fetch(
-    `http://omdbapi.com/?apikey=${
+    `https://omdbapi.com/?apikey=${
       import.meta.env.VITE_OMDB_API_KEY
     }&i=${imdbID}`,
   )
