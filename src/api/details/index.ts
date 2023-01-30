@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import { useQuery } from '@tanstack/react-query';
+import { logger } from '$utils/logger';
 
 const movieDetailSchema = z.object({
   Title: z.string(),
@@ -6,7 +8,6 @@ const movieDetailSchema = z.object({
   imdbID: z.string(),
   Type: z.string(),
   Poster: z.string().url(),
-  // TODO: add the rest from detail
   Rated: z.string(),
   Released: z.string(),
   Runtime: z.string(),
@@ -36,24 +37,64 @@ const movieDetailSchema = z.object({
   Response: z.string(),
 });
 
-type MovieDetailType = z.infer<typeof movieDetailSchema>;
+export type MovieDetailType = z.infer<typeof movieDetailSchema>;
 
-const result = movieDetailSchema.safeParse([
-  {
-    names: ['Dave', 12], // 12 is not a string
-    address: {
-      line1: '123 Maple Ave',
-      zipCode: 123, // zip code isn't 5 digits
-      extra: 'other stuff', // unrecognized key
-    },
-  },
-]);
-// await stringSchema.safeParseAsync({});
+type State = string | undefined;
 
-if (!result.success) {
-  // handle error then return
-  result.error;
-} else {
-  // do something
-  result.data;
-}
+type Response = {
+  success: boolean;
+  response: MovieDetailType | null;
+};
+
+const fetchMovieDetails = async (imdbID: State): Promise<Response> => {
+  if (!imdbID) {
+    return { success: false, response: null };
+  }
+
+  const response = await fetch(
+    `http://omdbapi.com/?apikey=${
+      import.meta.env.VITE_OMDB_API_KEY
+    }&i=${imdbID}`,
+  )
+    .then((resp) => resp?.json())
+    .catch(logger)
+    .then((data) => {
+      if (data.Response === 'True') {
+        return {
+          success: true,
+          response: data,
+        };
+      }
+
+      return {
+        success: false,
+        response: data,
+      };
+    })
+    .catch(logger);
+
+  if (response?.success) {
+    // TODO: use zod to parse the results
+    // const result = movieDetailSchema.safeParse(response.response);
+    //
+    // if (result.success) {
+    //   return {
+    //     success: true,
+    //     response: result.data,
+    //   };
+    // }
+
+    return response;
+  }
+
+  return {
+    success: false,
+    response: null,
+  };
+};
+
+export const useMovieDetailsQuery = (state: State) =>
+  useQuery({
+    queryKey: ['movieDetails', state],
+    queryFn: () => fetchMovieDetails(state),
+  });

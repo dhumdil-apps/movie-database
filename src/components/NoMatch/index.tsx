@@ -6,8 +6,10 @@ import {
   Button,
   Container,
   Group,
+  Box,
 } from '@mantine/core';
-import { IconPageNotFound } from 'src/icons/PageNotFound';
+
+import { IconPageNotFound } from '$icons/PageNotFound';
 import { ROUTES } from '$constants/routes';
 
 const useStyles = createStyles((theme) => ({
@@ -18,7 +20,7 @@ const useStyles = createStyles((theme) => ({
 
   title: {
     textAlign: 'center',
-    fontWeight: 900,
+    fontWeight: 800,
     fontSize: 38,
     paddingTop: 38,
 
@@ -32,6 +34,12 @@ const useStyles = createStyles((theme) => ({
     margin: 'auto',
     marginTop: theme.spacing.xl,
     marginBottom: theme.spacing.xl * 1.5,
+    fontWeight: 300,
+    fontStyle: 'italic',
+  },
+
+  button: {
+    fontWeight: 400,
   },
 }));
 
@@ -52,11 +60,11 @@ export function NoMatch() {
         address, or the page has been moved to another URL.
       </Text>
       <Group position='center'>
-        <Link to={ROUTES.HOME}>
-          <Button variant='subtle' size='md'>
+        <Box component={Link} to={ROUTES.HOME}>
+          <Button className={classes.button} variant='subtle' size='md'>
             Take me back to home page
           </Button>
-        </Link>
+        </Box>
       </Group>
     </Container>
   );

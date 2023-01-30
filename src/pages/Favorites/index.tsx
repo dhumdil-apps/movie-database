@@ -1,16 +1,24 @@
-import { useEffect } from 'react';
-import { ROUTES } from '$constants/routes';
-import { useRouterStore } from '$store/router';
+import { Container } from '@mantine/core';
+import { MovieList } from '$components/MovieList';
+import { MovieType } from '$api/movies';
+import { useFavoriteMoviesStore } from '$store/favoriteMovies';
+import { useMemo } from 'react';
 
 function Favorites() {
-  const setActiveRoute = useRouterStore((state) => state.setActiveRoute);
+  const { favoriteMovies, deleteFromFavoriteMovies } = useFavoriteMoviesStore();
 
-  useEffect(() => {
-    setActiveRoute(ROUTES.FAVORITES);
-    throw new Error();
-  }, []);
+  const movies: MovieType[] = useMemo(() => {
+    return Object.entries(favoriteMovies).map(([, movie]) => movie);
+  }, [favoriteMovies]);
 
-  return <h1>Favorites</h1>;
+  return (
+    <Container my='lg'>
+      <MovieList
+        list={movies}
+        onDeleteFromFavorites={deleteFromFavoriteMovies}
+      />
+    </Container>
+  );
 }
 
 export default Favorites;

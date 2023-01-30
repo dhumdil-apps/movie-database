@@ -17,7 +17,7 @@ const useStyles = createStyles((theme) => ({
 
   title: {
     textAlign: 'center',
-    fontWeight: 900,
+    fontWeight: 800,
     fontSize: 38,
     paddingTop: 38,
 
@@ -60,7 +60,7 @@ export function ErrorHandler(props: ErrorHandlerProps) {
           Try Again
         </Button>
         <a href={ROUTES.HOME}>
-          <Button size='md'>Take me back to home page</Button>
+          <Button size='md'>Take me to home page</Button>
         </a>
       </Group>
     </Container>

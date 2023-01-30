@@ -1,24 +1,29 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
+type ParamsType = {
+  [key: string]: string | undefined;
+};
+
 type State = {
   activeRoute: string;
+  routeParams: ParamsType;
 };
 
 type Actions = {
-  setActiveRoute: (route: string) => void;
+  updateRoute: (activeRoute: string, params: ParamsType) => void;
 };
 
 export const useRouterStore = create<State & Actions>()(
   devtools(
-    (set, get) => ({
+    (set) => ({
       activeRoute: '',
-      setActiveRoute: (route: string) => {
-        if (get().activeRoute !== route) {
-          set({
-            activeRoute: route,
-          });
-        }
+      routeParams: {},
+      updateRoute: (route, params) => {
+        set({
+          activeRoute: route,
+          routeParams: params,
+        });
       },
     }),
     {

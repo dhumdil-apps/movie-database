@@ -4,10 +4,12 @@ import {
   AppShell,
   MantineTheme,
 } from '@mantine/core';
-import { FooterSimple } from '$components/FooterSimple';
-import { HeaderSimple } from '$components/HeaderSimple';
+import { AppHeader } from '$components/AppHeader';
+import { AppFooter } from '$components/AppFooter';
+
 import { useUIStore } from '$store/ui';
 import { Router } from './Router';
+import { COLOR_SCHEME } from '$constants/colorScheme';
 
 const useAppShellStyle = (theme: MantineTheme) => ({
   main: {
@@ -28,14 +30,18 @@ function App() {
       toggleColorScheme={toggleColorScheme}
     >
       <MantineProvider
-        theme={{ colorScheme }}
+        theme={{
+          colorScheme,
+          fontFamily: 'Open Sans, sans-serif',
+          primaryColor: 'violet',
+        }}
         withGlobalStyles
         withNormalizeCSS
       >
         <AppShell
           padding='md'
-          header={<HeaderSimple />}
-          footer={<FooterSimple />}
+          header={<AppHeader />}
+          footer={<AppFooter />}
           styles={useAppShellStyle}
         >
           <Router />
