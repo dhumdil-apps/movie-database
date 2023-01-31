@@ -5,7 +5,7 @@
     "dbaeumer.vscode-eslint",
     "editorconfig.editorconfig",
     "streetsidesoftware.code-spell-checker",
-    "cweijan.vscode-vitest",
+    "zixuanchen.vitest-explorer",
     "ms-playwright.playwright"
   ]
 }
