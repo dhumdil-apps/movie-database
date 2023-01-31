@@ -12,6 +12,7 @@ import {
   Badge,
   SimpleGrid,
 } from '@mantine/core';
+import { useDocumentTitle } from '@mantine/hooks';
 import { Rating } from '$components/Rating';
 import { parseRatingValue } from '$utils/parseRatingValue';
 import { useFavoriteMoviesStore } from '$store/favoriteMovies';
@@ -96,6 +97,8 @@ function Details() {
       ? theme.colors.yellow[3]
       : theme.colors.orange[8];
 
+  useDocumentTitle('Movie Details');
+
   const handleAddToFavorites = () => {
     addToFavoriteMovies({
       imdbID: movieDetails.imdbID,
@@ -115,156 +118,148 @@ function Details() {
   const isStarInFavorites = isInFavorites(movieDetails?.imdbID);
 
   return (
-    <div>
-      <Container>
-        <div className={classes.inner}>
-          <div className={classes.content}>
-            <Text className={classes.year} hidden={!movieDetails.Year}>
-              {movieDetails.Year}
-            </Text>
-            <Flex
-              gap='xl'
-              justify='flex-start'
-              align='center'
-              direction='row'
-              wrap='wrap'
-            >
-              <Title className={classes.title} hidden={!movieDetails.Title}>
-                {movieDetails.Title}
-              </Title>
-              <ActionIcon
-                aria-label='Add to favorites'
-                size='xl'
-                onClick={handleAddToFavorites}
-                hidden={isStarInFavorites}
-              >
-                <IconStar size='44' color={contrastColor} />
-              </ActionIcon>
-            </Flex>
-
-            <Text
-              color='dimmed'
-              mt='md'
-              hidden={!movieDetails.Plot || movieDetails.Plot === 'N/A'}
-            >
-              {movieDetails.Plot}
-            </Text>
-
-            <SimpleList
-              list={[
-                {
-                  label: 'Director',
-                  value: movieDetails.Director,
-                },
-                {
-                  label: 'Writer',
-                  value: movieDetails.Writer,
-                },
-                {
-                  label: 'Actors',
-                  value: movieDetails.Actors,
-                },
-                {
-                  label: 'Genre',
-                  value: movieDetails.Genre,
-                },
-                {
-                  label: 'Language',
-                  value: movieDetails.Language,
-                },
-                {
-                  label: 'Country',
-                  value: movieDetails.Country,
-                },
-                {
-                  label: 'Awards',
-                  value: movieDetails.Awards,
-                },
-                {
-                  label: 'Box Office',
-                  value: movieDetails.BoxOffice,
-                },
-                {
-                  label: 'Production',
-                  value: movieDetails.Production,
-                },
-                {
-                  label: 'Website',
-                  value: movieDetails.Website,
-                },
-              ]}
-            />
-
-            <Group mt={30}>
-              <Badge
-                variant='dot'
-                size='lg'
-                aria-label='Type'
-                hidden={!movieDetails.Type || movieDetails.Type === 'N/A'}
-              >
-                {movieDetails.Type}
-              </Badge>
-              <Badge
-                variant='dot'
-                size='lg'
-                aria-label='Awards'
-                hidden={!movieDetails.Rated || movieDetails.Rated === 'N/A'}
-              >
-                {movieDetails.Rated}
-              </Badge>
-              <Badge
-                variant='dot'
-                size='lg'
-                aria-label='Released'
-                hidden={
-                  !movieDetails.Released || movieDetails.Released === 'N/A'
-                }
-              >
-                {movieDetails.Released}
-              </Badge>
-              <Badge
-                variant='dot'
-                size='lg'
-                aria-label='Runtime'
-                hidden={!movieDetails.Runtime || movieDetails.Runtime === 'N/A'}
-              >
-                {movieDetails.Runtime}
-              </Badge>
-            </Group>
-          </div>
+    <Container data-testid='movie-details'>
+      <div className={classes.inner}>
+        <div className={classes.content}>
+          <Text className={classes.year} hidden={!movieDetails.Year}>
+            {movieDetails.Year}
+          </Text>
           <Flex
-            gap='md'
-            justify='center'
-            align='flex-start'
+            gap='xl'
+            justify='flex-start'
+            align='center'
             direction='row'
             wrap='wrap'
           >
-            <Paper shadow='xl' radius='xs' p='xl'>
-              <Image
-                withPlaceholder
-                src={movieDetails.Poster}
-                className={classes.image}
-                alt={movieDetails.Title}
-              />
-            </Paper>
+            <Title className={classes.title} hidden={!movieDetails.Title}>
+              {movieDetails.Title}
+            </Title>
+            <ActionIcon
+              aria-label='Add to favorites'
+              size='xl'
+              onClick={handleAddToFavorites}
+              hidden={isStarInFavorites}
+            >
+              <IconStar size='44' color={contrastColor} />
+            </ActionIcon>
           </Flex>
+
+          <Text
+            color='dimmed'
+            mt='md'
+            hidden={!movieDetails.Plot || movieDetails.Plot === 'N/A'}
+          >
+            {movieDetails.Plot}
+          </Text>
+
+          <SimpleList
+            list={[
+              {
+                label: 'Director',
+                value: movieDetails.Director,
+              },
+              {
+                label: 'Writer',
+                value: movieDetails.Writer,
+              },
+              {
+                label: 'Actors',
+                value: movieDetails.Actors,
+              },
+              {
+                label: 'Genre',
+                value: movieDetails.Genre,
+              },
+              {
+                label: 'Language',
+                value: movieDetails.Language,
+              },
+              {
+                label: 'Country',
+                value: movieDetails.Country,
+              },
+              {
+                label: 'Awards',
+                value: movieDetails.Awards,
+              },
+              {
+                label: 'Box Office',
+                value: movieDetails.BoxOffice,
+              },
+              {
+                label: 'Production',
+                value: movieDetails.Production,
+              },
+              {
+                label: 'Website',
+                value: movieDetails.Website,
+              },
+            ]}
+          />
+
+          <Group mt={30}>
+            <Badge
+              variant='dot'
+              size='lg'
+              aria-label='Type'
+              hidden={!movieDetails.Type || movieDetails.Type === 'N/A'}
+            >
+              {movieDetails.Type}
+            </Badge>
+            <Badge
+              variant='dot'
+              size='lg'
+              aria-label='Awards'
+              hidden={!movieDetails.Rated || movieDetails.Rated === 'N/A'}
+            >
+              {movieDetails.Rated}
+            </Badge>
+            <Badge
+              variant='dot'
+              size='lg'
+              aria-label='Released'
+              hidden={!movieDetails.Released || movieDetails.Released === 'N/A'}
+            >
+              {movieDetails.Released}
+            </Badge>
+            <Badge
+              variant='dot'
+              size='lg'
+              aria-label='Runtime'
+              hidden={!movieDetails.Runtime || movieDetails.Runtime === 'N/A'}
+            >
+              {movieDetails.Runtime}
+            </Badge>
+          </Group>
         </div>
-        <SimpleGrid
-          cols={1}
-          mt={30}
-          breakpoints={[{ minWidth: 'md', cols: 3 }]}
+        <Flex
+          gap='md'
+          justify='center'
+          align='flex-start'
+          direction='row'
+          wrap='wrap'
         >
-          {movieDetails.Ratings.map((rating) => (
-            <Rating
-              key={rating.Source}
-              label={rating.Source}
-              value={parseRatingValue(rating.Value)}
-              valueLabel={rating.Value}
+          <Paper shadow='xl' radius='xs' p='xl'>
+            <Image
+              withPlaceholder
+              src={movieDetails.Poster}
+              className={classes.image}
+              alt={movieDetails.Title}
             />
-          ))}
-        </SimpleGrid>
-      </Container>
-    </div>
+          </Paper>
+        </Flex>
+      </div>
+      <SimpleGrid cols={1} mt={30} breakpoints={[{ minWidth: 'md', cols: 3 }]}>
+        {movieDetails.Ratings.map((rating) => (
+          <Rating
+            key={rating.Source}
+            label={rating.Source}
+            value={parseRatingValue(rating.Value)}
+            valueLabel={rating.Value}
+          />
+        ))}
+      </SimpleGrid>
+    </Container>
   );
 }
 

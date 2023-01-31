@@ -50,3 +50,8 @@ Thumbs.db
 !.vscode/settings.json
 
 .vercel
+
+/test-results/
+/playwright-report/
+/playwright/.cache/
+/*-examples/

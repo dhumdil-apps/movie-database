@@ -35,7 +35,7 @@ export function AppFooter() {
   const { classes } = useStyles();
 
   return (
-    <footer className={classes.footer}>
+    <footer data-testid='footer' className={classes.footer}>
       <Container className={classes.inner}>
         <ActionIcon
           component='a'

@@ -28,10 +28,11 @@ export function AppHeader() {
   const activeRoute = useRouterStore((state) => state.activeRoute);
 
   return (
-    <Header height={60} mb={120}>
+    <Header data-testid='header' height={60} mb={120}>
       <Container className={classes.header}>
         <Group>
           <Button
+            data-testid='home-link'
             className={classes.link}
             aria-label={LABELS.HOME}
             hidden={activeRoute === ROUTES.HOME}
@@ -45,6 +46,7 @@ export function AppHeader() {
             {LABELS.HOME}
           </Button>
           <Button
+            data-testid='favorites-link'
             className={classes.link}
             aria-label={LABELS.FAVORITES}
             hidden={activeRoute === ROUTES.FAVORITES}

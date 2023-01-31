@@ -6,12 +6,15 @@ import { useSearchStore } from '$store/search';
 import { NoResults } from '$components/NoResults';
 import { NoResultsYet } from '$components/NoResultsYet';
 import { NoMoreResults } from '$components/NoMoreResults';
+import { useDocumentTitle } from '@mantine/hooks';
 
 function Home() {
   const movies = useSearchStore((state) => state.movies);
 
+  useDocumentTitle('Movie Database');
+
   return (
-    <Container my='lg'>
+    <Container data-testid='home' my='lg'>
       <Grid grow gutter='lg'>
         <Grid.Col span={12} py='lg'>
           <Search />

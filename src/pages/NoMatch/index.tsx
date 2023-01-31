@@ -8,6 +8,7 @@ import {
   Group,
   Box,
 } from '@mantine/core';
+import { useDocumentTitle } from '@mantine/hooks';
 
 import { IconPageNotFound } from '$icons/PageNotFound';
 import { ROUTES } from '$constants/routes';
@@ -45,9 +46,10 @@ const useStyles = createStyles((theme) => ({
 
 export function NoMatch() {
   const { classes } = useStyles();
+  useDocumentTitle('Page not found');
 
   return (
-    <Container className={classes.root}>
+    <Container data-testid='404' className={classes.root}>
       <IconPageNotFound width='100%' />
       <Title className={classes.title}>You have found a secret place.</Title>
       <Text

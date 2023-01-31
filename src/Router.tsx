@@ -3,7 +3,7 @@ import { Routes, Route, useLocation, useParams } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import { ErrorHandler } from '$components/ErrorHandler';
-import { NoMatch } from '$components/NoMatch';
+import { NoMatch } from '$pages/NoMatch';
 import { ROUTES, ROUTES_PARAMS } from '$constants/routes';
 import { useRouterStore } from '$store/router';
 import { reload } from '$utils/reload';
@@ -33,7 +33,7 @@ export function Router() {
           index
           path={ROUTES.HOME}
           element={
-            <Suspense fallback={<>...</>}>
+            <Suspense fallback=''>
               <HomePage />
             </Suspense>
           }
@@ -41,7 +41,7 @@ export function Router() {
         <Route
           path={`${ROUTES.MOVIE_DETAILS}/:${ROUTES_PARAMS.MOVIE_DETAILS}`}
           element={
-            <Suspense fallback={<>...</>}>
+            <Suspense fallback=''>
               <DetailsPage />
             </Suspense>
           }
@@ -49,7 +49,7 @@ export function Router() {
         <Route
           path={ROUTES.FAVORITES}
           element={
-            <Suspense fallback={<>...</>}>
+            <Suspense fallback=''>
               <FavoritesPage />
             </Suspense>
           }
