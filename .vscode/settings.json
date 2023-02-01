@@ -13,6 +13,7 @@
     "OMDB",
     "tabler",
     "tanstack",
+    "testid",
     "zustand"
   ]
 }

@@ -5,7 +5,7 @@
 node_modules/
 /.pnp
 .pnp.js
-package-lock.json
+pnpm-lock.yaml
 yarn.lock
 
 # TESTING
@@ -50,3 +50,5 @@ Thumbs.db
 !.vscode/settings.json
 
 .vercel
+
+/*-examples/

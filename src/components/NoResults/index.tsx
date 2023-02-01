@@ -1,20 +1,24 @@
 import { Center, Text, Stack } from '@mantine/core';
-import { IconSearching } from '$icons/Searching';
+
 import { useSearchStore } from '$store/search';
 
+import { IconSearching } from '$icons/Searching';
+
+export const testId = {
+  root: 'NoResults',
+};
+
 export function NoResults() {
-  const isLoading = useSearchStore((state) => state.isLoading);
-  const totalMovies = useSearchStore((state) => state.totalMovies);
-  const searchValue = useSearchStore((state) => state.searchValue);
+  const { isLoading, totalMovies, searchValue } = useSearchStore();
 
   const noResults = searchValue && !isLoading && totalMovies === 0;
 
   if (!noResults) {
-    return <></>;
+    return null;
   }
 
   return (
-    <Center mt={50}>
+    <Center data-testid={testId.root} mt={50}>
       <Stack>
         <IconSearching size='300' />
         <Text size='xl' align='center'>

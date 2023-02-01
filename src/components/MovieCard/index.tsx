@@ -1,52 +1,62 @@
 import { Link } from 'react-router-dom';
 import { createStyles, Stack, Text, Paper, Button, Badge } from '@mantine/core';
-import { MovieType } from '$api/movies';
+
+import type { MovieType } from '$api/movies';
+
 import { ROUTES } from '$constants/routes';
 
-const useStyles = createStyles((theme) => ({
-  card: {
-    position: 'relative',
-    width: 300,
-    height: 450,
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-  },
+export const testId = {
+  root: 'MovieCard',
+};
 
-  cardDetails: {
-    height: '100%',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    padding: 24,
-    background: 'rgba(0,0,0, 0.9)',
-    opacity: 0,
-    transition: 'opacity 300ms ease-in-out',
-
-    '&:hover': {
-      opacity: 1,
+const useStyles = createStyles(
+  (theme, { Poster, hasSrc }: { Poster: string; hasSrc: boolean }) => ({
+    card: {
+      position: 'relative',
+      width: 300,
+      height: 450,
+      backgroundPosition: 'center',
+      backgroundSize: 'contain',
+      backgroundImage: `url(${Poster})`,
+      backgroundRepeat: 'no-repeat',
     },
-  },
 
-  title: {
-    fontWeight: 400,
-    fontSize: 24,
-    color: theme.white,
-  },
+    cardDetails: {
+      height: '100%',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      padding: 24,
+      background: 'rgba(0,0,0, 0.9)',
+      opacity: hasSrc ? 0 : 0.5,
+      transition: 'opacity 300ms ease-in-out',
 
-  year: {
-    fontWeight: 800,
-    fontSize: 48,
-    color: theme.white,
-  },
+      '&:hover': {
+        opacity: 1,
+      },
+    },
 
-  type: {
-    fontWeight: 300,
-    fontStyle: 'italic',
-    fontSize: 16,
-    color: theme.primaryColor,
-  },
-}));
+    title: {
+      fontWeight: 400,
+      fontSize: 24,
+      color: theme.white,
+    },
+
+    year: {
+      fontWeight: 800,
+      fontSize: 48,
+      color: theme.white,
+    },
+
+    type: {
+      fontWeight: 300,
+      fontStyle: 'italic',
+      fontSize: 16,
+      color: theme.primaryColor,
+    },
+  }),
+);
 
 type MovieCardType = {
   onDeleteFromFavorites?: (imdbID: string) => void;
@@ -60,17 +70,17 @@ export function MovieCard({
   Poster,
   onDeleteFromFavorites,
 }: MovieType & MovieCardType) {
-  const { classes } = useStyles();
+  const { classes } = useStyles({
+    Poster,
+    hasSrc: !!Poster && Poster !== 'N/A',
+  });
 
   return (
     <Paper
+      data-testid={testId.root}
       shadow='md'
       p='xl'
       className={classes.card}
-      sx={{
-        backgroundColor: 'white',
-        backgroundImage: `url(${Poster})`,
-      }}
     >
       <Stack justify='space-between' className={classes.cardDetails}>
         <Stack align='flex-start' justify='flex-start'>

@@ -3,7 +3,10 @@ import { createStyles, Container, Group, ActionIcon } from '@mantine/core';
 import { IconGithub } from '$icons/Github';
 import { IconLink } from '$icons/Link';
 import { IconVercel } from '$icons/Vercel';
-import { ROUTES } from '$constants/routes';
+
+export const testId = {
+  root: 'AppFooter',
+};
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -35,11 +38,11 @@ export function AppFooter() {
   const { classes } = useStyles();
 
   return (
-    <footer className={classes.footer}>
+    <footer data-testid={testId.root} className={classes.footer}>
       <Container className={classes.inner}>
         <ActionIcon
           component='a'
-          href={ROUTES.HOME}
+          href='https://movie-database-dhumdil.vercel.app/'
           variant='subtle'
           aria-label='Vercel'
         >

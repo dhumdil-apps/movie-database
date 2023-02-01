@@ -7,22 +7,20 @@
 - Install [VS Code](https://code.visualstudio.com/)
 - Install [NVM](https://github.com/nvm-sh/nvm)
 - Use the latest version of node 18: `nvm install lts/hydrogen && nvm use lts/hydrogen`
-- Install pnpm globally: `npm i -g pnpm`
-- Finish the setup by running the script: `bash setup.sh`
 
 ### Local Development
 
-- Start Developing Locally: `pnpm dev`
+- Start Developing Locally: `npm dev`
 
 ### Format - coding style consistency
 
 - Install the recommended extension in VS Code based on .vscode/extensions.json
 - Apply the recommended settings based on .vscode/settings.json
-- If using other IDE then VS Code, use the scripts: `pnpm run lint:fix` and `pnpm run prettier:fix` or for both `pnpm run format`
+- If using other IDE then VS Code, use the scripts: `npm run lint:fix` and `npm run prettier:fix` or for both `npm run format`
 
 ### Build
 
-- `pnpm build`
+- `npm build`
 - TODO
 
 ### Test

@@ -1,4 +1,8 @@
 export function parseRatingValue(value: string) {
+  if (typeof value !== 'string') {
+    return null;
+  }
+
   try {
     const isPercentage = value.indexOf('%') !== -1;
 
@@ -22,6 +26,5 @@ export function parseRatingValue(value: string) {
     console.warn(e);
   }
 
-  console.warn('Could not parse:', value);
   return null;
 }

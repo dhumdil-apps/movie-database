@@ -6,8 +6,14 @@ import {
   Container,
   Group,
 } from '@mantine/core';
+
 import { IconFixingBugs } from '$icons/FixingBugs';
+
 import { ROUTES } from '$constants/routes';
+
+export const testId = {
+  root: 'ErrorHandler',
+};
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -43,7 +49,7 @@ export function ErrorHandler(props: ErrorHandlerProps) {
   const { classes } = useStyles();
 
   return (
-    <Container className={classes.root}>
+    <Container data-testid={testId.root} className={classes.root}>
       <IconFixingBugs width='100%' />
       <Title className={classes.title}>You have found a bug.</Title>
       <Text

@@ -1,6 +1,12 @@
 import { Center, SimpleGrid } from '@mantine/core';
+
+import type { MovieType } from '$api/movies';
+
 import { MovieCard } from '$components/MovieCard';
-import { MovieType } from '$api/movies';
+
+export const testId = {
+  root: 'MovieList',
+};
 
 type MovieListProps = {
   onDeleteFromFavorites?: (imdbID: string) => void;
@@ -9,11 +15,11 @@ type MovieListProps = {
 
 export function MovieList({ list, onDeleteFromFavorites }: MovieListProps) {
   if (!list?.length) {
-    return <></>;
+    return null;
   }
 
   return (
-    <Center>
+    <Center data-testid={testId.root}>
       <SimpleGrid
         cols={1}
         spacing='xl'

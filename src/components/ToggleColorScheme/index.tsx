@@ -1,16 +1,22 @@
 import { Switch, Group, useMantineTheme } from '@mantine/core';
-import { IconSun } from '$icons/Sun';
-import { COLOR_SCHEME } from '$constants/colorScheme';
-import { IconMoonStars } from '$icons/MoonStars';
+
 import { useUIStore } from '$store/ui';
+
+import { IconSun } from '$icons/Sun';
+import { IconMoonStars } from '$icons/MoonStars';
+
+import { COLOR_SCHEME } from '$constants/colorScheme';
+
+export const testId = {
+  root: 'ToggleColorScheme',
+};
 
 export function ToggleColorScheme() {
   const theme = useMantineTheme();
-  const colorScheme = useUIStore((state) => state.colorScheme);
-  const toggleColorScheme = useUIStore((state) => state.toggleColorScheme);
+  const { colorScheme, toggleColorScheme } = useUIStore();
 
   return (
-    <Group position='center'>
+    <Group data-testid={testId.root} position='center'>
       <Switch
         aria-label='Toggle between dark and light color scheme'
         checked={colorScheme === COLOR_SCHEME.DARK}
