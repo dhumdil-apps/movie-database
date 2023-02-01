@@ -1,25 +1,30 @@
-import { Center, Button, useMantineTheme, LoadingOverlay } from '@mantine/core';
-import { useSearchStore } from '$store/search';
-import { COLOR_SCHEME } from '$constants/colorScheme';
-import { useUIStore } from '$store/ui';
 import { useMutation } from '@tanstack/react-query';
+import { Center, Button, useMantineTheme, LoadingOverlay } from '@mantine/core';
+
 import { fetchMovies } from '$api/movies';
 
+import { useUIStore } from '$store/ui';
+import { useSearchStore } from '$store/search';
+
+import { COLOR_SCHEME } from '$constants/colorScheme';
+
+export const testId = {
+  root: 'LoadMore',
+};
+
 export function LoadMore() {
-  const setLoading = useSearchStore((state) => state.setLoading);
-  const resetSearchValue = useSearchStore((state) => state.resetSearchValue);
-  const loadNextPage = useSearchStore((state) => state.loadNextPage);
-  const isLoading = useSearchStore((state) => state.isLoading);
-  const searchValue = useSearchStore((state) => state.searchValue);
-  const page = useSearchStore((state) => state.page);
-  const totalMovies = useSearchStore((state) => state.totalMovies);
-  const loadedMovies = useSearchStore((state) => state.loadedMovies);
-  const colorScheme = useUIStore((state) => state.colorScheme);
   const theme = useMantineTheme();
-  const hasResults = totalMovies > loadedMovies;
-  const isHidden = !page || !hasResults;
-  const contrastColor =
-    colorScheme === COLOR_SCHEME.DARK ? theme.white : theme.black;
+  const colorScheme = useUIStore((state) => state.colorScheme);
+  const {
+    setLoading,
+    resetSearchValue,
+    loadNextPage,
+    isLoading,
+    searchValue,
+    page,
+    totalMovies,
+    loadedMovies,
+  } = useSearchStore();
   const mutation = useMutation(fetchMovies, {
     onSuccess: (response) => {
       if (response.data?.movies) {
@@ -31,6 +36,11 @@ export function LoadMore() {
     onMutate: setLoading,
   });
 
+  const hasResults = totalMovies > loadedMovies;
+  const isHidden = !page || !hasResults;
+  const contrastColor =
+    colorScheme === COLOR_SCHEME.DARK ? theme.white : theme.black;
+
   const onLoadMore = () => {
     if (searchValue && page) {
       mutation.mutate({ searchValue, page: page + 1 });
@@ -38,7 +48,7 @@ export function LoadMore() {
   };
 
   return (
-    <Center sx={{ position: 'relative' }}>
+    <Center data-testid={testId.root} sx={{ position: 'relative' }}>
       <Button
         hidden={isHidden}
         color={theme.primaryColor}

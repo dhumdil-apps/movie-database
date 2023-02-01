@@ -1,16 +1,23 @@
 import { List } from '@mantine/core';
 
-type Item = {
-  [key: string]: string;
+export const testId = {
+  root: 'SimpleList',
 };
 
 type SimpleListProps = {
-  list: Item[];
+  list: {
+    label: string;
+    value: string;
+  }[];
 };
 
 export function SimpleList({ list }: SimpleListProps) {
+  if (!list?.length) {
+    return null;
+  }
+
   return (
-    <List mt={30} spacing='sm' size='sm'>
+    <List data-testid={testId.root} mt={30} spacing='sm' size='sm'>
       {list.map(
         (item) =>
           item.value &&

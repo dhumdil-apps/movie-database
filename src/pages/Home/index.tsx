@@ -1,12 +1,17 @@
 import { Grid, Container } from '@mantine/core';
+import { useDocumentTitle } from '@mantine/hooks';
+
 import { Search } from '$components/Search';
 import { MovieList } from '$components/MovieList';
 import { LoadMore } from '$components/LoadMore';
-import { useSearchStore } from '$store/search';
 import { NoResults } from '$components/NoResults';
 import { NoResultsYet } from '$components/NoResultsYet';
 import { NoMoreResults } from '$components/NoMoreResults';
-import { useDocumentTitle } from '@mantine/hooks';
+import { useSearchStore } from '$store/search';
+
+export const testId = {
+  root: 'Home',
+};
 
 function Home() {
   const movies = useSearchStore((state) => state.movies);
@@ -14,7 +19,7 @@ function Home() {
   useDocumentTitle('Movie Database');
 
   return (
-    <Container data-testid='home' my='lg'>
+    <Container data-testid={testId.root} my='lg'>
       <Grid grow gutter='lg'>
         <Grid.Col span={12} py='lg'>
           <Search />

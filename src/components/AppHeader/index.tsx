@@ -1,12 +1,23 @@
 import { Link } from 'react-router-dom';
 import { createStyles, Header, Container, Group, Button } from '@mantine/core';
 
-import { useRouterStore } from '$store/router';
 import { ToggleColorScheme } from '$components/ToggleColorScheme';
+
+import { useRouterStore } from '$store/router';
+
 import { IconStar } from '$icons/IconStar';
 import { IconVercel } from '$icons/Vercel';
+
 import { ROUTES } from '$constants/routes';
 import { LABELS } from '$constants/labels';
+
+export const testId = {
+  root: 'AppHeader',
+  links: {
+    home: 'AppHeader_links_home',
+    favorites: 'AppHeader_links_favorites',
+  },
+};
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -28,11 +39,11 @@ export function AppHeader() {
   const activeRoute = useRouterStore((state) => state.activeRoute);
 
   return (
-    <Header data-testid='header' height={60} mb={120}>
+    <Header data-testid={testId.root} height={60} mb={120}>
       <Container className={classes.header}>
         <Group>
           <Button
-            data-testid='home-link'
+            data-testid={testId.links.home}
             className={classes.link}
             aria-label={LABELS.HOME}
             hidden={activeRoute === ROUTES.HOME}
@@ -46,7 +57,7 @@ export function AppHeader() {
             {LABELS.HOME}
           </Button>
           <Button
-            data-testid='favorites-link'
+            data-testid={testId.links.favorites}
             className={classes.link}
             aria-label={LABELS.FAVORITES}
             hidden={activeRoute === ROUTES.FAVORITES}

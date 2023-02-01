@@ -8,13 +8,21 @@ import {
 } from '@mantine/core';
 import { useInputState, getHotkeyHandler } from '@mantine/hooks';
 import styled from '@emotion/styled';
+
+import { fetchMovies } from '$api/movies';
+
+import { useSearchStore } from '$store/search';
+import { useUIStore } from '$store/ui';
+
 import { IconSearch } from '$icons/Search';
 import { IconArrowLeft } from '$icons/ArrowLeft';
 import { IconArrowRight } from '$icons/ArrowRight';
-import { useSearchStore } from '$store/search';
-import { useUIStore } from '$store/ui';
+
 import { COLOR_SCHEME } from '$constants/colorScheme';
-import { fetchMovies } from '$api/movies';
+
+export const testId = {
+  root: 'Rating',
+};
 
 const StyledDiv = styled.div`
   position: relative;
@@ -58,19 +66,14 @@ const useStyles = createStyles(
 );
 
 export function Search() {
+  const {
+    resetSearchValue,
+    loadFirstPage,
+    setSearchValue,
+    searchValue,
+    isLoading,
+  } = useSearchStore();
   const colorScheme = useUIStore((state) => state.colorScheme);
-  const resetSearchValue = useSearchStore((state) => state.resetSearchValue);
-  const loadFirstPage = useSearchStore((state) => state.loadFirstPage);
-  const setSearchValue = useSearchStore((state) => state.setSearchValue);
-  const searchValue = useSearchStore((state) => state.searchValue);
-  const isLoading = useSearchStore((state) => state.isLoading);
-  const [search, setSearch] = useInputState(searchValue);
-  const [focused, setFocused] = useState(false);
-  const { classes, theme } = useStyles({
-    floating: search.trim().length !== 0 || focused,
-  });
-  const contrastColor =
-    colorScheme === COLOR_SCHEME.DARK ? theme.white : theme.black;
   const mutation = useMutation(fetchMovies, {
     onSuccess: (response) => {
       if (
@@ -91,6 +94,15 @@ export function Search() {
     },
   });
 
+  const [search, setSearch] = useInputState(searchValue);
+  const [focused, setFocused] = useState(false);
+  const { classes, theme } = useStyles({
+    floating: search.trim().length !== 0 || focused,
+  });
+
+  const contrastColor =
+    colorScheme === COLOR_SCHEME.DARK ? theme.white : theme.black;
+
   const triggerSearch = () => {
     if (!isLoading) {
       mutation.mutate({ searchValue: search, page: 1 });
@@ -98,7 +110,7 @@ export function Search() {
   };
 
   return (
-    <StyledDiv>
+    <StyledDiv data-testid={testId.root}>
       <TextInput
         classNames={classes}
         icon={<IconSearch size='18' color={theme.colors.dark[0]} />}

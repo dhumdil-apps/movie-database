@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-import { MovieType } from '$api/movies';
+
+import type { MovieType } from '$api/movies';
 
 type State = {
   searchValue: string;

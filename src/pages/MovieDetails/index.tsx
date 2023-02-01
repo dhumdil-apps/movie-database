@@ -1,4 +1,4 @@
-import { IconStar } from '$icons/IconStar';
+import { useParams } from 'react-router-dom';
 import {
   createStyles,
   Image,
@@ -13,14 +13,25 @@ import {
   SimpleGrid,
 } from '@mantine/core';
 import { useDocumentTitle } from '@mantine/hooks';
+
+import type { MovieDetailType } from '$api/details';
+import { useMovieDetailsQuery } from '$api/details';
+
 import { Rating } from '$components/Rating';
-import { parseRatingValue } from '$utils/parseRatingValue';
-import { useFavoriteMoviesStore } from '$store/favoriteMovies';
-import { MovieDetailType, useMovieDetailsQuery } from '$api/details';
-import { useParams } from 'react-router-dom';
 import { SimpleList } from '$components/SimpleList';
+
+import { useFavoriteMoviesStore } from '$store/favoriteMovies';
 import { useUIStore } from '$store/ui';
+
+import { IconStar } from '$icons/IconStar';
+
+import { parseRatingValue } from '$utils/parseRatingValue';
+
 import { COLOR_SCHEME } from '$constants/colorScheme';
+
+export const testId = {
+  root: 'MovieDetails',
+};
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -86,7 +97,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function Details() {
+function MovieDetails() {
   const { imdbID } = useParams();
   const { data, isLoading } = useMovieDetailsQuery(imdbID);
   const { classes, theme } = useStyles();
@@ -110,15 +121,14 @@ function Details() {
   };
 
   if (isLoading || !data?.response) {
-    // TODO: page skeleton
-    return <>...</>;
+    return <>Loading...</>;
   }
 
   const movieDetails: MovieDetailType = data?.response;
   const isStarInFavorites = isInFavorites(movieDetails?.imdbID);
 
   return (
-    <Container data-testid='movie-details'>
+    <Container data-testid={testId.root}>
       <div className={classes.inner}>
         <div className={classes.content}>
           <Text className={classes.year} hidden={!movieDetails.Year}>
@@ -239,7 +249,12 @@ function Details() {
           direction='row'
           wrap='wrap'
         >
-          <Paper shadow='xl' radius='xs' p='xl'>
+          <Paper
+            hidden={!movieDetails.Poster || movieDetails.Poster === 'N/A'}
+            shadow='xl'
+            radius='xs'
+            p='xl'
+          >
             <Image
               withPlaceholder
               src={movieDetails.Poster}
@@ -249,18 +264,24 @@ function Details() {
           </Paper>
         </Flex>
       </div>
-      <SimpleGrid cols={1} mt={30} breakpoints={[{ minWidth: 'md', cols: 3 }]}>
-        {movieDetails.Ratings.map((rating) => (
-          <Rating
-            key={rating.Source}
-            label={rating.Source}
-            value={parseRatingValue(rating.Value)}
-            valueLabel={rating.Value}
-          />
-        ))}
+      <SimpleGrid
+        hidden={!movieDetails?.Ratings?.length}
+        cols={1}
+        mt={30}
+        breakpoints={[{ minWidth: 'md', cols: 3 }]}
+      >
+        {movieDetails?.Ratings?.length &&
+          movieDetails?.Ratings?.map((rating) => (
+            <Rating
+              key={rating.Source}
+              label={rating.Source}
+              value={parseRatingValue(rating.Value)}
+              valueLabel={rating.Value}
+            />
+          ))}
       </SimpleGrid>
     </Container>
   );
 }
 
-export default Details;
+export default MovieDetails;

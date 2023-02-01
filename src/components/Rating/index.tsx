@@ -1,5 +1,9 @@
 import { RingProgress, Text, Paper, Stack } from '@mantine/core';
 
+export const testId = {
+  root: 'Rating',
+};
+
 type RatingProps = {
   label: string;
   value: number | null;
@@ -12,7 +16,7 @@ export function Rating({ label, value, valueLabel }: RatingProps) {
   }
 
   return (
-    <Paper withBorder radius='md' py='md' my='xl'>
+    <Paper data-testid={testId.root} withBorder radius='md' py='md' my='xl'>
       <Stack align='center'>
         <RingProgress
           sections={[{ value, color: 'blue' }]}

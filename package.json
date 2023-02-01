@@ -18,9 +18,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "coverage": "vitest run --coverage",
-    "test:e2e": "npx playwright test",
-    "e2e:report": "npx playwright show-report"
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -39,7 +37,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
-    "@playwright/test": "^1.30.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@types/jest": "^29.4.0",

@@ -1,11 +1,15 @@
 import { expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
-import { AppFooter, testId } from './index';
+import { SimpleList, testId } from './index';
 
-describe('AppFooter', () => {
+const props = {
+  list: [{ label: 'label', value: 'value' }],
+};
+
+describe('SimpleList', () => {
   it('should render and the find root test id', async () => {
-    render(<AppFooter />);
+    render(<SimpleList {...props} />);
 
     expect(screen.getByTestId(testId.root)).toBeVisible();
   });
